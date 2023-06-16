@@ -1,2 +1,1 @@
-# indinca-assessment
-Indinca Technical Assesment
+services,marketplace,events,logistics and more
