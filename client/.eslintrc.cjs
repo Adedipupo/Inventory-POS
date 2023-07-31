@@ -1,4 +1,6 @@
-/* eslint-env node */
+/*eslint no-undef: "error"*/
+/*eslint-env node*/
+
 
 module.exports = {
   env: { browser: true, es2020: true },
