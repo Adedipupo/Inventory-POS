@@ -24,14 +24,14 @@ export default function LogIn() {
                   <label>Remember Me</label>
               </div>
               <div>
-                  <a href="#" className="text-indigo-800 font-semibold">htmlForgot Password?</a>
+                  <a href="#" className="text-indigo-800 font-semibold">Forgot Password?</a>
               </div>
           </div>
           <div className="mt-5">
               <button type="submit" className="border-2 border-indigo-700 bg-indigo-700 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-indigo-700 font-semibold"><i className="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;Login</button>
           </div>
           <div className="mt-5">
-              <button type="submit" className="border-2 border-indigo-700 outline-indigo-700 text-indigo-700 py-1 w-full rounded-md hover:bg-indigo-700 hover:text-white font-semibold"><i className="fa-solid fa-right-to-bracket"></i>Create Account</button>
+              <button type="submit" className="border-2 border-indigo-700 outline-indigo-700 text-indigo-700 py-1 w-full rounded-md hover:bg-indigo-700 hover:text-white font-semibold"><i className="fa-solid fa-plus"></i>&nbsp;&nbsp;Create Account</button>
           </div>
         </div>
       </div>
