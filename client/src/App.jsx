@@ -1,12 +1,15 @@
 import './App.css'
+import SignIn from './components/LogIn'
+// import SignIn from './components/SignIn'
 
 function App() {
 
   return (
     <>
-     <div>
-      Welcome to home!!!
-     </div>
+    <h1 className="">
+    <SignIn/>
+    </h1>
+  
     </>
   )
 }
