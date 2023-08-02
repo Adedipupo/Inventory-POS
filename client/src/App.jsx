@@ -1,15 +1,22 @@
 import './App.css'
-import SignIn from './components/LogIn'
-// import SignIn from './components/SignIn'
+import Home from './components/Home'
+import LogIn from './components/LogIn'
+import Register from './components/Register'
+import {BrowserRouter as Router,Route, Routes} from 'react-router-dom'
 
 function App() {
 
   return (
     <>
-    <h1 className="">
-    <SignIn/>
-    </h1>
-  
+    <Router>
+      <Routes>
+        <Route exact path='/' element={<LogIn/>}/>
+        <Route path='/register' element={<Register/>}/>
+        <Route path='/home' element={<Home/>}/>
+      </Routes>
+     
+
+    </Router>
     </>
   )
 }
