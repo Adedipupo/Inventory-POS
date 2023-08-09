@@ -13,7 +13,7 @@ export default function Home() {
         <Header/>
 
         <div className=" bg-indigo-700 h-screen">
-
+            <p className=" text-6xl font-abel text-center text-white">Welcome...</p>
         </div>
     </div>
     </>

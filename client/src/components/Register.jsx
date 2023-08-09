@@ -8,11 +8,14 @@ export default function Register() {
   return (
     <>
     <div className="mx-auto">
-      <div className="bg-white text-indigo-700  ml-5 p-3 flex-col">
-        <h1 className="text-3xl" >Inventory</h1>
-        <p className=" font-mono">system</p>
+      
+      <div className="bg-white text-indigo-700 font-lobster text-2xl  ml-5 p-3">
+        <Link to="/">  
+        <h1>Inventory System</h1>
+        </Link>      
       </div>
-      <div className="flex justify-center items-center h-screen bg-indigo-600">
+
+      <div className="flex justify-center items-center h-screen bg-indigo-600 font-abel">
      
         <div className="w-96 p-6 shadow-lg bg-white rounded-md">
           <h1 className="text-3xl block text-center font-semibold"><i className="fa-solid fa-user"></i> Registration Page</h1>
@@ -23,7 +26,16 @@ export default function Register() {
           </div>
           <div className="mt-3">
               <label htmlFor="username" className="block text-base mb-2">Choose Username</label>
-              <input type="text" id="username" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="choose Username..." />
+              <input type="text" id="username" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Choose Username..." />
+          </div>
+          <div className="mt-3">
+          <label htmlFor="roles" className="block text-base mb-2">Select a role</label>
+            <select id="roles" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Select a role..." >
+              <option selected>Select a role</option>
+              <option value="Supervisor">Supervisor</option>
+              <option value="Manager">Manager</option>
+              <option value="Rep">Rep</option>
+            </select>
           </div>
           <div className="mt-3">
               <label htmlFor="password" className="block text-base mb-2">Password</label>
@@ -38,11 +50,10 @@ export default function Register() {
             <Link to='/home'><button type="submit" className="border-2 border-indigo-700 bg-indigo-700 text-white py-1 w-full rounded-md hover:bg-transparent hover:text-indigo-700 font-semibold"><i className="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;Register</button></Link>
               
           </div>
-          <div className="mt-3 flex justify-between items-center">
+          <div className="mt-3 flex justify-end">
+             
               <div>
-              </div>
-              <div>
-                <p>Already a user? </p>  <Link to="/" className="text-indigo-800 font-semibold">LogIn</Link>
+                <p>Already a user?<Link to="/" className="text-indigo-800 font-semibold">LogIn</Link></p>
               </div>
           </div>
           
