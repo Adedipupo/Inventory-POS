@@ -19,16 +19,22 @@ export default function Register() {
      
         <div className="w-96 p-6 shadow-lg bg-white rounded-md">
           <h1 className="text-3xl block text-center font-semibold"><i className="fa-solid fa-user"></i> Registration Page</h1>
-          
+          <div className="mt-3">
+              <label htmlFor="FirstName" className="block text-base mb-2">First Name</label>
+              <input type="text" id="FirstName" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter First Name..." />
+          </div><div className="mt-3">
+              <label htmlFor="LastName" className="block text-base mb-2">Last Name</label>
+              <input type="text" id="LastName" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Last Name..." />
+          </div>
           <div className="mt-3">
               <label htmlFor="email" className="block text-base mb-2">Email</label>
               <input type="email" id="email" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Email..." />
           </div>
           <div className="mt-3">
-              <label htmlFor="username" className="block text-base mb-2">Choose Username</label>
-              <input type="text" id="username" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Choose Username..." />
+              <label htmlFor="phone" className="block text-base mb-2">Phone Number</label>
+              <input type="text" id="phone" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Phone Number..." />
           </div>
-          <div className="mt-3">
+          {/* <div className="mt-3">
           <label htmlFor="roles" className="block text-base mb-2">Select a role</label>
             <select id="roles" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Select a role..." >
               <option selected>Select a role</option>
@@ -36,7 +42,7 @@ export default function Register() {
               <option value="Manager">Manager</option>
               <option value="Rep">Rep</option>
             </select>
-          </div>
+          </div> */}
           <div className="mt-3">
               <label htmlFor="password" className="block text-base mb-2">Password</label>
               <input type="password" id="password" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Password..." />

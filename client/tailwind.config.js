@@ -7,12 +7,16 @@ export default {
   theme: {
     extend: { 
       fontFamily:{
-        lobster:"lobster",
-        abel:"abel",
-        comfortaa:"comfortaa",
-        tektur:"tektur"
+        lobster:["Lobster","cursive "],
+        abel:["Abel", "sans-serif"]
+      },
+    },
+   
+  },
+   variants: {
+      extend: {
+        backgroundColor: ['active'],
       }
     },
-  },
   plugins: [],
 }
