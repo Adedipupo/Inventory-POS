@@ -21,8 +21,8 @@ export default function LogIn() {
           <h1 className="text-3xl block text-center font-semibold"><i className="fa-solid fa-user"></i> Login</h1>
           
           <div className="mt-3">
-              <label htmlFor="username" className="block text-base mb-2">Username</label>
-              <input type="text" id="username" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Username..." />
+              <label htmlFor="email" className="block text-base mb-2">Email</label>
+              <input type="email" id="email" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Enter Email..." />
           </div>
           
           <div className="mt-3">
@@ -35,7 +35,7 @@ export default function LogIn() {
                   <label className="lobster"> Remember Me</label>
               </div>
               <div>
-                  <a href="#" className="text-indigo-800 font-semibold">Forgot Password?</a>
+                 <Link to='/forgetpassword' className="text-indigo-800 font-semibold">Forgot Password?</Link>
               </div>
           </div>
           <div className="mt-5">

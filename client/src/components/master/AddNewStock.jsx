@@ -1,25 +1,22 @@
 // import { useState } from "react";
-import "../App.css";
-import "./style.css";
-// import {Link} from 'react-router-dom';
-import Header from "./Header";
+import "../../../src/App.css";
 
-
-export default function Stock() {
+export default function AddNewStock() {
   return (
-    <>
-    
-    <div className=" mx-auto">
-        <Header/>
-        <div className="bg-indigo-700 h-screen font-abel p-10">
-            <div className="bg-white flex flex-col p-2 shadow-md w-full">
+    <div className="mx-auto overflow-hidden">
+         <div className="bg-indigo-700 h-screen font-abel p-10">
+            <div className="bg-white flex flex-col p-2 shadow-md">
 
-                <h1 className=" text-2xl text-center font-lobster">Stock Taking</h1>
+                <h1 className=" text-3xl text-center font-lobster">Add New Product</h1>
 
                 <div className="flex flex-1 gap-2">
                     
 
                     <div className="">
+                        <div className="flex flex-row gap-1 mt-3">
+                            <label htmlFor="username" className="block text-base mb-2">Date</label>
+                            <input type="text" id="username" className="border border-black w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="" />
+                        </div>
                         <div className="flex flex-row gap-1 mt-3">
                             <label htmlFor="roles" className="block text-base mb-2">Select a Branch</label>
                             <select id="roles" className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="Select a role..." >
@@ -31,7 +28,9 @@ export default function Stock() {
                         </div>
                         
                     </div>
-                   
+                    <div className="">
+                        <button type="submit" className="border-2 border-indigo-700 bg-indigo-700 text-white p-1 w-full rounded-md hover:bg-transparent hover:text-indigo-700 font-semibold"><i className="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;Import Product</button>
+                    </div>
                 </div>
             </div>
             <div className="bg-white">
@@ -70,23 +69,21 @@ export default function Stock() {
                     </thead>
                 </table>
             </div>
-            <div className="bg-white">
-                <div className="flex flex-row justify-between p-5">
-                    
+            <div className="absolute bottom-0 bg-white w-5/6">
+                <div className=" flex flex-row flex-grow gap-5 p-5">
+                    <div className="flex flex-row mt-3 w-1/10">
+                        <button type="submit" className="border-2 border-indigo-700 bg-indigo-700 text-white p-1 w-full rounded-md hover:bg-transparent hover:text-indigo-700 font-semibold"><i className="fa-solid fa-right-to-bracket"></i>&nbsp;&nbsp;Add Product</button>
+                    </div>
 
                     <div className="flex flex-row gap-1 mt-3 w-1/3 justify-end">
                             <label htmlFor="text" className="block text-base mb-2">Total Quantity</label>
                             <input type="text" id="text" className="border border-black w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600" placeholder="" />
                     </div>
-
-                    <div className="flex flex-row mt-3 w-1/10">
-                        <button type="submit" className="border-2 border-indigo-700 bg-indigo-700 text-white p-3 w-full rounded-md hover:bg-transparent hover:text-indigo-700 font-semibold">Save</button>
-                    </div>
                 </div>
 
             </div>
-        </div>
     </div>
-    </>
-  );
+    </div>
+   
+  )
 }
