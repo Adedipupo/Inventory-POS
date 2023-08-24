@@ -1,13 +1,13 @@
-import express, { urlencoded } from 'express'
+import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import createError from 'http-errors'
-import path from 'path'
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 
 import indexRouter from './routes/index.js'
+import authRouter from './routes/authRoute.js'
 import connectDB from './config/datababse.js'
 
 dotenv.config();
@@ -36,6 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use('/', indexRouter)
+app.use('/auth', authRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -50,7 +51,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500)
-  res.render('error')
+  res.send('error')
 })
 
 app.listen(port, () => {
