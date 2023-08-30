@@ -7,6 +7,12 @@ const connectDB = async() => {
             useNewUrlParser: true
         })
         console.log(`Connected to MongoDB Successfully` );
+        console.log('  ▀▄   ▄▀');
+        console.log(' ▄█▀███▀█▄');
+        console.log('█▀███████▀█');
+        console.log('█ █▀▀▀▀▀█ █');
+        console.log('   ▀▀ ▀▀');
+        console.log('Hello Adventurer,');
     } catch (error) {
         console.error(`Error: ${error.message}`)
         process.exit(1)

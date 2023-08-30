@@ -7,8 +7,7 @@ import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 
 import indexRouter from './routes/index.js'
-import authRouter from './routes/authRoute.js'
-import connectDB from './config/datababse.js'
+import connectDB from './config/database.js'
 
 dotenv.config();
 connectDB();
@@ -35,8 +34,12 @@ if (process.env.NODE_ENV === 'production') {
   app.use(morgan('dev'))
 }
 
-app.use('/', indexRouter)
-app.use('/auth', authRouter)
+app.get("/", (_req, res) => {
+  res.redirect("/api/v1");
+});
+
+//= = Root Route ==============
+app.use("/api/v1", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
