@@ -29,9 +29,9 @@ class authService {
       const { firstName, lastName, email, password, phoneNumber } = req.body;
 
       const userExists = await UserModel.findOne({ email });
+      console.log("userExists",userExists)
       if (userExists) {
-        res.status(400);
-        throw new Error("User already exists");
+        return res.status(400).json("User already exists");
       }
 
       //Create user
@@ -46,13 +46,14 @@ class authService {
 
       //Generate a token
       const token = Token.generateToken(newUser._id);
+      console.log("Promise.resolve(token)",Promise.resolve(token))
       newUser.password = undefined;
       //Store cookie in the request body.
       res.cookie("authorization", token);
       return res.status(201).json({
         message: "User successfully created!!!",
-        data: user,
-        token: token,
+        data: newUser,
+        token: Promise.resolve(token),
       });
     } catch (error) {
       console.log(error);

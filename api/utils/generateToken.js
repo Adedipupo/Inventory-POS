@@ -1,10 +1,13 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 
-export default class Token {
-  async generateToken(id) {
-    return jwt.sign({id}, process.env.JWT_SECRET, { expiresIn: '10m' })
+ class Token {
+  static async generateToken(id) {
+    return jwt.sign({id}, process.env.JWT_SECRET, { expiresIn: '1d' })
   }
-  async verifyToken(token) {
+  static async verifyToken(token) {
     return jwt.verify(token, process.env.JWT_SECRET)
   }
 }
+
+
+export default Token;

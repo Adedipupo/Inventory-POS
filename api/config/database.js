@@ -12,7 +12,7 @@ const connectDB = async() => {
         console.log('█▀███████▀█');
         console.log('█ █▀▀▀▀▀█ █');
         console.log('   ▀▀ ▀▀');
-        console.log('Hello Adventurer,');
+        console.log('Hello Adventurer,a good to remind you Cristiano Ronaldo still remains the GOAT !!!!');
     } catch (error) {
         console.error(`Error: ${error.message}`)
         process.exit(1)
