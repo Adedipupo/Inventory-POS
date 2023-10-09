@@ -1,6 +1,7 @@
 import { UserModel } from "../models/userModel.js";
 import { validateUser } from "../validation/joiValidation.js";
 import Token from "../utils/generateToken.js";
+import bcryptjs from "bcryptjs";
 
 class authService {
   /**
@@ -29,7 +30,7 @@ class authService {
       const { firstName, lastName, email, password, phoneNumber } = req.body;
 
       const userExists = await UserModel.findOne({ email });
-      console.log("userExists",userExists)
+
       if (userExists) {
         return res.status(400).json("User already exists");
       }
@@ -45,15 +46,15 @@ class authService {
       await newUser.save();
 
       //Generate a token
-      const token = Token.generateToken(newUser._id);
-      console.log("Promise.resolve(token)",Promise.resolve(token))
+      const token = await Token.generateToken(newUser._id);
+
       newUser.password = undefined;
       //Store cookie in the request body.
       res.cookie("authorization", token);
       return res.status(201).json({
         message: "User successfully created!!!",
         data: newUser,
-        token: Promise.resolve(token),
+        token: token,
       });
     } catch (error) {
       console.log(error);
@@ -76,7 +77,7 @@ class authService {
   static async login(req, res) {
     try {
       const { email, password } = req.body;
-
+     
       const user = await UserModel.findOne({ email });
 
       if (!user)
@@ -84,9 +85,10 @@ class authService {
           message: `User with this email does not exist`,
         });
 
-      const userPassword = await bcrypt.compare(password, user.password);
+      const userPassword = await bcryptjs.compare(password, user.password);
 
-      const token = generateToken(user._id);
+      const token = await Token.generateToken(user._id);
+
       res.cookie("authorization", token, {
         path: "/",
         httpOnly: true,
