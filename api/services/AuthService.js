@@ -1,7 +1,8 @@
-import { UserModel } from "../models/userModel.js";
-import { validateUser } from "../validation/joiValidation.js";
-import Token from "../utils/generateToken.js";
-import bcryptjs from "bcryptjs";
+import { UserModel } from '../models/userModel.js'
+import { validateUser } from '../validation/joiValidation.js'
+import Token from '../utils/generateToken.js'
+import bcryptjs from 'bcryptjs'
+import formatHTTPLoggerResponse, { httpLogger } from './LoggerService.js'
 
 class authService {
   /**
@@ -19,20 +20,20 @@ class authService {
 
   static async signUp(req, res) {
     try {
-      const { error } = validateUser.validate(req.body);
+      const { error } = validateUser.validate(req.body)
 
       if (error)
         return res.status(501).json({
           message: `Validation error: ${error.details[0].message}`,
           success: false,
-        });
+        })
 
-      const { firstName, lastName, email, password, phoneNumber } = req.body;
+      const { firstName, lastName, email, password, phoneNumber } = req.body
 
-      const userExists = await UserModel.findOne({ email });
+      const userExists = await UserModel.findOne({ email })
 
       if (userExists) {
-        return res.status(400).json("User already exists");
+        return res.status(400).json('User already exists')
       }
 
       //Create user
@@ -42,26 +43,26 @@ class authService {
         lastName,
         password,
         phoneNumber,
-      });
-      await newUser.save();
+      })
+      await newUser.save()
 
       //Generate a token
-      const token = await Token.generateToken(newUser._id);
+      const token = await Token.generateToken(newUser._id)
 
-      newUser.password = undefined;
+      newUser.password = undefined
       //Store cookie in the request body.
-      res.cookie("authorization", token);
+      res.cookie('authorization', token)
       return res.status(201).json({
-        message: "User successfully created!!!",
+        message: 'User successfully created!!!',
         data: newUser,
         token: token,
-      });
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
       return res.status(500).json({
-        message: "Internal Server Error",
+        message: 'Internal Server Error',
         success: false,
-      });
+      })
     }
   }
 
@@ -76,32 +77,43 @@ class authService {
 
   static async login(req, res) {
     try {
-      const { email, password } = req.body;
-     
-      const user = await UserModel.findOne({ email });
+      const { email, password } = req.body
 
-      if (!user)
+      const user = await UserModel.findOne({ email })
+
+      if (!user) {
+        httpLogger.error(
+          'Failure message',
+          formatHTTPLoggerResponse(req, res, {
+            message: `User with this email does not exist.`,
+          }),
+        )
         return res.status(401).json({
           message: `User with this email does not exist`,
-        });
+        })
+      }
 
-      const userPassword = await bcryptjs.compare(password, user.password);
+      const userPassword = await bcryptjs.compare(password, user.password)
 
-      const token = await Token.generateToken(user._id);
+      const token = await Token.generateToken(user._id)
 
-      res.cookie("authorization", token, {
-        path: "/",
+      res.cookie('authorization', token, {
+        path: '/',
         httpOnly: true,
         expires: new Date(Date.now() + 1000 * 86400),
         // sameSite: "none",
         // secure: true,
-      });
+      })
 
       if (user && userPassword) {
         const { _id, lastName, firstName, email, phoneNumber } = user;
+        httpLogger.info(
+          'Success message',
+          formatHTTPLoggerResponse(req, res, user),
+        )
         return res.status(200).json({
           success: true,
-          message: "login successful",
+          message: 'login successful',
           data: {
             _id,
             lastName,
@@ -110,16 +122,20 @@ class authService {
             phoneNumber,
           },
           token: token,
-        });
+        })
       } else {
-        return res.status(401).json({ message: `Invalid Credentials!!!` });
+        return res.status(401).json({ message: `Invalid Credentials!!!` })
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
+      httpLogger.error('Failure message', 
+      formatHTTPLoggerResponse(req, res, 
+      { message: error })
+    )
       return res.status(500).json({
-        message: "Internal Server Error",
+        message: 'Internal Server Error',
         success: false,
-      });
+      })
     }
   }
 
@@ -132,31 +148,31 @@ class authService {
    */
   static async forgotPassword(req, res) {
     try {
-      const { email } = req.body;
-      const user = await UserModel.findOne({ email });
-      console.log("user", user);
+      const { email } = req.body
+      const user = await UserModel.findOne({ email })
+      console.log('user', user)
       if (!user) {
         return res.status(401).json({
-          status: "error",
-          error: "Email doesnt exist",
-        });
+          status: 'error',
+          error: 'Email doesnt exist',
+        })
       }
-      const token = generateToken(user._id);
-      const link = `${process.env.BASE_URL}/auth/resetPassword/${user._id}/${token}`;
+      const token = generateToken(user._id)
+      const link = `${process.env.BASE_URL}/auth/resetPassword/${user._id}/${token}`
 
       sendEmail(
         email,
-        "Password Reset",
+        'Password Reset',
         `hello ${user.firstName}, you requested a change in your password you can reset it using this link ${link}.
           The link expires in ten mins`,
-        res
-      );
+        res,
+      )
     } catch (error) {
-      console.log(error);
+      console.log(error)
       return res.status(500).json({
-        message: "Internal Server Error",
+        message: 'Internal Server Error',
         success: false,
-      });
+      })
     }
   }
 
@@ -172,28 +188,28 @@ class authService {
 
   static async resetPassword(req, res) {
     try {
-      const { id, token } = req.params;
-      const verify = verifyToken(token);
-      const userid = verify.id;
-      const { password } = req.body;
-      const user = await UserModel.findById({ _id: id });
+      const { id, token } = req.params
+      const verify = verifyToken(token)
+      const userid = verify.id
+      const { password } = req.body
+      const user = await UserModel.findById({ _id: id })
 
       if (!user) {
         return res.status(401).json({
-          status: "error",
-          error: "User does not exist",
-        });
+          status: 'error',
+          error: 'User does not exist',
+        })
       }
 
       if (userid !== id) {
         return res.status(401).json({
-          status: "error",
-          error: "unauthorised user",
-        });
+          status: 'error',
+          error: 'unauthorised user',
+        })
       }
-      const saltRounds = 10;
-      const salt = await bcrypt.genSalt(saltRounds);
-      const hashedPassword = await bcrypt.hash(password, salt);
+      const saltRounds = 10
+      const salt = await bcrypt.genSalt(saltRounds)
+      const hashedPassword = await bcrypt.hash(password, salt)
 
       await UserModel.findOneAndUpdate(
         { id },
@@ -202,22 +218,22 @@ class authService {
         },
         {
           new: true,
-        }
-      );
-      return res.status(201).json({
-        status: "success",
-        data: {
-          message: "Password Successfully Updated",
         },
-      });
+      )
+      return res.status(201).json({
+        status: 'success',
+        data: {
+          message: 'Password Successfully Updated',
+        },
+      })
     } catch (error) {
-      console.log(error);
+      console.log(error)
       return res.status(500).json({
-        message: "Internal Server Error",
+        message: 'Internal Server Error',
         success: false,
-      });
+      })
     }
   }
 }
 
-export default authService;
+export default authService
