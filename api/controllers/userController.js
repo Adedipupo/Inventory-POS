@@ -13,6 +13,15 @@ class UserController {
     await this.userService.getAllUsers(req, res);
   };
 
+  /**
+   * @route GET api/v1/user.
+   * @desc get a registered user
+   * @access Public.
+   */
+   getUser = async (req, res) => {
+    await this.userService.getAUser(req, res);
+  };
+
 }
 
 export default UserController;

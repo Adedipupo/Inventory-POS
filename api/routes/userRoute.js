@@ -6,7 +6,8 @@ const userController = new UserController();
 
 // user route
 
-router.post("/users", userController.getUsers);
+router.get("/users", userController.getUsers);
+router.get("/user/:id", userController.getUser);
 
 
 
