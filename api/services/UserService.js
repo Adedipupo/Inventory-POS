@@ -45,16 +45,17 @@ class userService {
 
   static async getAUser(req, res) {
     try {
-      const id = req.params
-      const user = await UserModel.findOne(id)
+      const {id} = req.params
+      const user = await UserModel.findById({_id: id});
+
 
       if (user) {
         httpLogger.info(
           'Success message',
-          formatHTTPLoggerResponse(req, res, users),
+          formatHTTPLoggerResponse(req, res, user),
         )
 
-        return res.status(401).json({
+        return res.status(200).json({
           message: `Users retrieved successfully`,
           data: user,
         })

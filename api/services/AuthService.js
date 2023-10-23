@@ -51,7 +51,7 @@ class authService {
 
       newUser.password = undefined
       //Store cookie in the request body.
-      res.cookie('authorization', token)
+      res.cookie('token', token)
       return res.status(201).json({
         message: 'User successfully created!!!',
         data: newUser,
