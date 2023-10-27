@@ -15,6 +15,8 @@ const userSchema = new mongoose.Schema({
   },
   isApproved: {type: Boolean},
   isAdmin: {type: Boolean},
+  isMerchant : {type: Boolean},
+  isSuperAdmin: {type: Boolean},
   lastChangedPassword: {type: Date}
 });
 

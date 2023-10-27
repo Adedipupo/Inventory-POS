@@ -46,7 +46,7 @@ class userService {
   static async getAUser(req, res) {
     try {
       const {id} = req.params
-      const user = await UserModel.findById({_id: id});
+      const user = await UserModel.findById({_id: id}).select('-password');
 
 
       if (user) {
