@@ -11,7 +11,7 @@ class userService {
 
   static async getAllUsers(req, res) {
     try {
-      const users = await UserModel.find()
+      const users = await UserModel.find();
 
       if (users) {
         httpLogger.info(
@@ -82,4 +82,4 @@ class userService {
   }
 }
 
-export default userService
+export default userService;

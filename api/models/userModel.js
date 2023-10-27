@@ -7,7 +7,12 @@ const userSchema = new mongoose.Schema({
   email: {type: String,required: true, unique: true},
   phoneNumber: {type: String,required: true,},
   password: {type: String,required: true,},
-  role: {type: String},
+  role: {
+    type: String,
+    enum: ["customer", "merchant", "admin", "superAdmin"],
+    default: "customer",
+    required: true,
+  },
   isApproved: {type: Boolean},
   isAdmin: {type: Boolean},
   lastChangedPassword: {type: Date}
