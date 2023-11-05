@@ -11,7 +11,7 @@ class userService {
 
   static async getAllUsers(req, res) {
     try {
-      const users = await UserModel.find();
+      const users = await UserModel.find()
 
       if (users) {
         httpLogger.info(
@@ -45,9 +45,8 @@ class userService {
 
   static async getAUser(req, res) {
     try {
-      const {id} = req.params
-      const user = await UserModel.findById({_id: id}).select('-password');
-
+      const { id } = req.params
+      const user = await UserModel.findById({ _id: id }).select('-password')
 
       if (user) {
         httpLogger.info(
@@ -82,4 +81,4 @@ class userService {
   }
 }
 
-export default userService;
+export default userService

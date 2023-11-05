@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     default: "customer",
     required: true,
   },
-  isApproved: {type: Boolean},
+  isVerified: {type: Boolean},
   isAdmin: {type: Boolean},
   isMerchant : {type: Boolean},
   isSuperAdmin: {type: Boolean},
