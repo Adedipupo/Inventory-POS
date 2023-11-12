@@ -1,4 +1,4 @@
-import merchantService from "../services/MerchantService.js";
+import merchantService from "./MerchantService.js";
 
 
 class MerchantController {

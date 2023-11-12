@@ -1,4 +1,4 @@
-import authService from "../services/AuthService.js";
+import authService from "./AuthService.js";
 
 class AuthController {
   constructor() {

@@ -1,5 +1,5 @@
-import { UserModel } from '../models/userModel.js'
-import formatHTTPLoggerResponse, { httpLogger } from './LoggerService.js'
+import { UserModel } from './userModel.js'
+import formatHTTPLoggerResponse, { httpLogger } from '../services/LoggerService.js'
 
 class userService {
   /**
@@ -36,6 +36,7 @@ class userService {
       })
     }
   }
+
   /**
    * @method getUser
    * @static

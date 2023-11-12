@@ -2,7 +2,7 @@ import { UserModel } from '../models/userModel.js'
 import { validateUser } from '../validation/joiValidation.js'
 import Token from '../utils/generateToken.js'
 import bcryptjs from 'bcryptjs'
-import formatHTTPLoggerResponse, { httpLogger } from './LoggerService.js'
+import formatHTTPLoggerResponse, { httpLogger } from '../services/LoggerService.js'
 
 class authService {
   /**

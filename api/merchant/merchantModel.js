@@ -1,11 +1,6 @@
 import mongoose from 'mongoose'
 
 const merchantSchema = new mongoose.Schema({
-//   user: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     required: true,
-//     ref: 'User',
-//   },
   businessName: { type: String, required: true },
   displayName: { type: String, required: true },
   businessLogo: { type: String},
