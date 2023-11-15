@@ -1,7 +1,7 @@
 import express from "express";
 import AuthController from "../controllers/authController.js";
 
-const router = express.Router();
+const Authrouter = express.Router();
 const authController = new AuthController();
 
 // signup route
@@ -13,4 +13,4 @@ router.post('/forgotPassword', authController.forgotPassword)
 
 router.patch('/resetPassword/:id/:token', authController.resetPassword)
 
-export default router;
+export default Authrouter;

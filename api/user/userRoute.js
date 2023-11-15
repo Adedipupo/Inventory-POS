@@ -2,7 +2,7 @@ import express from "express";
 import UserController from "./userController.js";
 import { verifyUser } from "../middleware/authMiddleware.js";
 
-const router = express.Router();
+const userRouter = express.Router();
 const userController = new UserController();
 
 // user route
@@ -12,4 +12,4 @@ router.get("/:id",verifyUser, userController.getUser);
 
 
 
-export default router;
+export default userRouter;
